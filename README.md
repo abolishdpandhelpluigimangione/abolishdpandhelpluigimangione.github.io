@@ -10,4 +10,4 @@ This is a campaign website to:
 - Share this site: [Live Demo](https://abolishdpandhelpluigimangione.github.io/abolishdpandhelpluigimangione/)
 - Join organizations listed on the site
 
-Created by [Luigi Case Files/Ana Facillia Meira]. 
+Created by Luigi Case Files/Ana Facillia Meira. 

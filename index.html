@@ -266,6 +266,8 @@
       <div class="tab active" onclick="showTab('action')">Take Action</div>
       <div class="tab" onclick="showTab('politicians')">Legislators</div>
       <div class="tab" onclick="showTab('organizations')">Organizations</div>
+      <div class="tab" onclick="showTab('italy')">Italy Contacts</div>
+      <div class="tab" onclick="showTab('europe')">Europe Contacts</div>
     </div>
     
     <div id="action-tab">
@@ -284,7 +286,7 @@ Dear [Senator/Representative] [Last Name],
 
 My name is [Your Name], and I am writing to thank you for your public stance against the death penalty. Your leadership on this issue gives hope to those of us who believe in a justice system rooted in dignity, equity, and human rights.
 
-I respectfully urge you to continue working toward abolishing the death penalty at the federal level and to support legislation that advances criminal justice reform. I also ask that you oppose the Trump administration’s efforts to seek the death penalty for Luigi Mangione. Mangione’s case is being exploited as a political tool by Donald Trump and Pam Bondi to further their so-called "Make America Safe Again" agenda—a policy that prioritizes punitive measures over justice.
+I respectfully urge you to continue working toward abolishing the death penalty at the federal level and to support legislation that advances criminal justice reform. I also ask that you oppose the Trump administration's efforts to seek the death penalty for Luigi Mangione. Mangione's case is being exploited as a political tool by Donald Trump and Pam Bondi to further their so-called "Make America Safe Again" agenda—a policy that prioritizes punitive measures over justice.
 
 Your voice is crucial in building a system that values human life and acknowledges the irreversible consequences of federal executions.
 
@@ -310,6 +312,68 @@ Sincerely,
       <div class="card">
         <h2>Abolition Organizations</h2>
         <div id="organizations-list"></div>
+      </div>
+    </div>
+
+    <div id="italy-tab" class="hidden">
+      <div class="card">
+        <h2>Italian Contacts</h2>
+        <div id="italy-list"></div>
+      </div>
+      
+      <div class="card">
+        <h2>Email Template (Italian)</h2>
+        <div class="quote" id="email-script-italian">
+Egregio/a [Representative Name],
+
+Mi chiamo [Your Name] e Le scrivo in qualità di cittadino/a profondamente impegnato/a nella difesa dei principi di giustizia, dignità umana e sacralità della vita. Desidero esprimere il mio sincero apprezzamento per il Suo costante impegno a tutela di questi valori, in particolare per la Sua posizione contraria alla pena di morte.
+
+Con il massimo rispetto, La invito a intraprendere un'azione diplomatica presso le autorità statunitensi affinché non venga richiesta la pena di morte per Luigi Mangione, cittadino italiano attualmente imputato in un processo che prevede l'applicazione della pena capitale negli Stati Uniti. Come ben saprà, l'Italia ha abolito la pena di morte e continua a essere tra le nazioni più attive nella sua eliminazione a livello globale. In questo spirito, ritengo fondamentale che il nostro Paese difenda con coerenza la propria posizione sui diritti umani, chiedendo clemenza e una condanna non letale per il signor Mangione.
+
+Questa vicenda solleva, inoltre, preoccupazioni più ampie sulla politicizzazione della giustizia. La spinta verso l'applicazione della pena capitale sembra inserirsi in una narrazione che antepone il consenso politico alla ricerca ponderata di giustizia e riabilitazione. L'irreversibilità di tale condanna, unita al rischio sempre presente di errori giudiziari, evidenzia l'urgenza di una diplomazia ispirata alla compassione.
+
+La voce dell'Italia—la Sua voce—è essenziale per affermare il valore della vita, della giustizia e dei principi che il nostro Paese difende da sempre. Confido che vorrà utilizzare ogni canale diplomatico disponibile per garantire che il signor Mangione venga trattato nel rispetto degli standard internazionali sui diritti umani e della storica posizione italiana contro la pena di morte.
+
+La ringrazio per il Suo impegno a favore della giustizia e per continuare a difendere un mondo che sceglie l'umanità, non la vendetta.
+
+Con rispetto,
+[Your Name]
+[City, Country]
+[Optional: Contact Info]
+        </div>
+        <button class="copy-btn" onclick="copyScriptItalian()">Copy Italian Message</button>
+        <span id="copied-message-italian" style="margin-left: 1rem; color: var(--secondary); display: none;">Copied to clipboard!</span>
+      </div>
+    </div>
+
+    <div id="europe-tab" class="hidden">
+      <div class="card">
+        <h2>European Contacts</h2>
+        <div id="europe-list"></div>
+      </div>
+      
+      <div class="card">
+        <h2>Email Template (European)</h2>
+        <div class="quote" id="email-script-european">
+Dear [Representative / Consular Official / Diplomatic Authority],
+
+My name is [Your Name], and I am writing as a concerned citizen deeply committed to the principles of justice, human dignity, and the sanctity of life. I wish to express my sincere appreciation for your ongoing efforts to uphold these values, particularly your opposition to the death penalty.
+
+I respectfully urge you to engage diplomatically with U.S. authorities to advocate against seeking the death penalty for Luigi Mangione, an Italian citizen currently facing capital charges in the United States. As you are aware, Italy has abolished the death penalty and remains one of the most active nations in promoting its global eradication. In this spirit, I believe it is imperative that Italy uphold its human rights stance by seeking clemency and a non-lethal sentence in Mr. Mangione's case.
+
+This matter also raises broader concerns about the politicization of justice. The push to impose the death penalty appears to be entangled in a narrative that prioritizes political gain over the careful pursuit of justice and rehabilitation. The irreversible nature of such a sentence, combined with the potential for judicial error, underscores the urgent need for compassionate diplomacy.
+
+Italy's voice—your voice—is essential in standing for life, fairness, and the values our nation holds dear. I trust that you will use all available diplomatic channels to ensure that Mr. Mangione is treated in a manner consistent with international human rights standards and Italy's longstanding position against capital punishment.
+
+Thank you for your dedication to justice, and for continuing to advocate for a world that chooses humanity over vengeance.
+
+Respectfully,
+[Your Name]
+[City, Country]
+[Optional: Contact Info]
+        </div>
+        <button class="copy-btn" onclick="copyScriptEuropean()">Copy European Message</button>
+        <span id="copied-message-european" style="margin-left: 1rem; color: var(--secondary); display: none;">Copied to clipboard!</span>
       </div>
     </div>
   </main>
@@ -579,7 +643,7 @@ Sincerely,
       }
     ];
 
-    // Complete list of organizations from your document
+    // Updated organizations list with additional contacts from PDF
     const organizations = [
       {
         name: "Amnesty International",
@@ -616,6 +680,94 @@ Sincerely,
         contact: "(212) 364-5340",
         website: "https://innocenceproject.org/",
         description: "Works to exonerate the wrongly convicted through DNA testing and reforms to prevent injustice."
+      },
+      // New organizations from PDF
+      {
+        name: "Death Penalty Action",
+        contact: "info@deathpenaltyaction.org",
+        website: "https://deathpenaltyaction.org/",
+        description: "Organization working to end executions in the United States."
+      },
+      {
+        name: "Death Penalty Project",
+        contact: "info@deathpenaltyproject.org",
+        website: "https://www.deathpenaltyproject.org/",
+        description: "International human rights organization challenging the death penalty worldwide."
+      },
+      {
+        name: "UN Human Rights",
+        contact: "hrwdc@hrw.org",
+        website: "https://www.ohchr.org/",
+        description: "United Nations human rights office working globally for human rights."
+      },
+      {
+        name: "International Human Rights Foundation",
+        contact: "info@hrf.org",
+        website: "https://www.hrf.org/",
+        description: "Organization dedicated to protecting human rights around the world."
+      }
+    ];
+
+    // Italian contacts from PDF
+    const italianContacts = [
+      {
+        name: "Justice Minister Mr. Nordio",
+        contact: "https://scrivi.camera.it/scrivi?dest=deputato&id_aul=308798",
+        description: "Italian Minister of Justice"
+      },
+      {
+        name: "Foreign Affairs Minister Mr. Tajani",
+        contact: "antonio.tajani@europarl.europa.eu",
+        description: "Italian Minister of Foreign Affairs"
+      },
+      {
+        name: "AVS president Marco Grimaldi",
+        contact: "grimaldim@alice.it, mgrimaldi@arrowglobal.net",
+        description: "President of Alleanza Verdi e Sinistra (Green and Left Alliance)"
+      },
+      {
+        name: "EU Parliament (Italy)",
+        contact: "eproma@europarl.europa.eu",
+        description: "Italian representatives in the European Parliament"
+      },
+      {
+        name: "LIDU (Human Rights)",
+        contact: "comunicazione@liduonlus.it",
+        description: "Italian League for Human Rights"
+      },
+      {
+        name: "Amnesty Italy",
+        contact: "infoamnesty@amnesty.it",
+        description: "Italian branch of Amnesty International"
+      }
+    ];
+
+    // European contacts from PDF
+    const europeanContacts = [
+      {
+        name: "Human Rights Watch (Belgium)",
+        contact: "belgium@hrw.org",
+        description: "International human rights organization"
+      },
+      {
+        name: "EU High Representative for Foreign Affairs",
+        contact: "cab-kallas-contact@ec.europa.eu",
+        description: "European Union foreign affairs representative"
+      },
+      {
+        name: "European Parliament",
+        contact: "eplobelgium@europarl.europa.eu",
+        description: "Legislative branch of the European Union"
+      },
+      {
+        name: "European Commission",
+        contact: "https://european-union.europa.eu/contact-eu/write-us_en",
+        description: "Executive branch of the European Union"
+      },
+      {
+        name: "European Union in the US",
+        contact: "delegation-usa-info@eeas.europa.eu",
+        description: "EU delegation to the United States"
       }
     ];
 
@@ -623,6 +775,8 @@ Sincerely,
     document.addEventListener('DOMContentLoaded', function() {
       loadPoliticians();
       loadOrganizations();
+      loadItalianContacts();
+      loadEuropeanContacts();
     });
 
     function loadPoliticians() {
@@ -659,11 +813,39 @@ Sincerely,
       `).join('');
     }
 
+    function loadItalianContacts() {
+      const list = document.getElementById('italy-list');
+      list.innerHTML = italianContacts.map(c => `
+        <div class="person-card">
+          <div class="person-name">${c.name}</div>
+          <div class="person-title">${c.description}</div>
+          <div class="person-contact">${c.contact.includes('http') ? 
+            `<a href="${c.contact}" target="_blank">${c.contact}</a>` : 
+            c.contact}</div>
+        </div>
+      `).join('');
+    }
+
+    function loadEuropeanContacts() {
+      const list = document.getElementById('europe-list');
+      list.innerHTML = europeanContacts.map(c => `
+        <div class="person-card">
+          <div class="person-name">${c.name}</div>
+          <div class="person-title">${c.description}</div>
+          <div class="person-contact">${c.contact.includes('http') ? 
+            `<a href="${c.contact}" target="_blank">${c.contact}</a>` : 
+            c.contact}</div>
+        </div>
+      `).join('');
+    }
+
     function showTab(tabName) {
       // Hide all tabs
       document.getElementById('action-tab').classList.add('hidden');
       document.getElementById('politicians-tab').classList.add('hidden');
       document.getElementById('organizations-tab').classList.add('hidden');
+      document.getElementById('italy-tab').classList.add('hidden');
+      document.getElementById('europe-tab').classList.add('hidden');
       
       // Remove active class from all tabs
       document.querySelectorAll('.tab').forEach(tab => {
@@ -676,48 +858,66 @@ Sincerely,
     }
 
     function findLegislators() {
-  const zip = document.getElementById('zip-input').value.trim();
-  const resultsDiv = document.getElementById('search-results');
+      const zip = document.getElementById('zip-input').value.trim();
+      const resultsDiv = document.getElementById('search-results');
 
-  // Validate ZIP format
-  if (!/^\d{5}$/.test(zip)) {
-    resultsDiv.innerHTML = `
-      <div class="person-card" style="color:var(--secondary)">
-        Please enter a valid 5-digit U.S. ZIP code
-      </div>
-    `;
-    return;
-  }
+      // Validate ZIP format
+      if (!/^\d{5}$/.test(zip)) {
+        resultsDiv.innerHTML = `
+          <div class="person-card" style="color:var(--secondary)">
+            Please enter a valid 5-digit U.S. ZIP code
+          </div>
+        `;
+        return;
+      }
 
-  // Display manual lookup instructions
-  resultsDiv.innerHTML = `
-    <div class="person-card">
-      <h3>How to Find Your Representatives</h3>
-      <ol>
-        <li>Go to <a href="https://www.house.gov/representatives/find-your-representative" target="_blank">house.gov</a></li>
-        <li>Enter ZIP code <strong>${zip}</strong></li>
-        <li>Note your Representative's name</li>
-        <li>Return here to contact them</li>
-      </ol>
-      
-      <h4 style="margin-top:1.5rem">For Senators:</h4>
-      <ol>
-        <li>Go to <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank">senate.gov</a></li>
-        <li>Select your state</li>
-        <li>Note both Senators' names</li>
-      </ol>
-      
-      <div style="margin-top:1.5rem; background:var(--green-light); padding:1rem; border-radius:8px;">
-        <p><strong>Pro Tip:</strong> Bookmark these official lookup tools for future use!</p>
-      </div>
-    </div>
-  `;
-}
+      // Display manual lookup instructions
+      resultsDiv.innerHTML = `
+        <div class="person-card">
+          <h3>How to Find Your Representatives</h3>
+          <ol>
+            <li>Go to <a href="https://www.house.gov/representatives/find-your-representative" target="_blank">house.gov</a></li>
+            <li>Enter ZIP code <strong>${zip}</strong></li>
+            <li>Note your Representative's name</li>
+            <li>Return here to contact them</li>
+          </ol>
+          
+          <h4 style="margin-top:1.5rem">For Senators:</h4>
+          <ol>
+            <li>Go to <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank">senate.gov</a></li>
+            <li>Select your state</li>
+            <li>Note both Senators' names</li>
+          </ol>
+          
+          <div style="margin-top:1.5rem; background:var(--green-light); padding:1rem; border-radius:8px;">
+            <p><strong>Pro Tip:</strong> Bookmark these official lookup tools for future use!</p>
+          </div>
+        </div>
+      `;
+    }
 
     function copyScript() {
       const script = document.getElementById('email-script').innerText;
       navigator.clipboard.writeText(script).then(() => {
         const msg = document.getElementById('copied-message');
+        msg.style.display = 'inline';
+        setTimeout(() => msg.style.display = 'none', 3000);
+      });
+    }
+
+    function copyScriptItalian() {
+      const script = document.getElementById('email-script-italian').innerText;
+      navigator.clipboard.writeText(script).then(() => {
+        const msg = document.getElementById('copied-message-italian');
+        msg.style.display = 'inline';
+        setTimeout(() => msg.style.display = 'none', 3000);
+      });
+    }
+
+    function copyScriptEuropean() {
+      const script = document.getElementById('email-script-european').innerText;
+      navigator.clipboard.writeText(script).then(() => {
+        const msg = document.getElementById('copied-message-european');
         msg.style.display = 'inline';
         setTimeout(() => msg.style.display = 'none', 3000);
       });

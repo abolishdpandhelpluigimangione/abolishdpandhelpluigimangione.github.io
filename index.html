@@ -252,6 +252,22 @@
         margin-bottom: 0.5rem;
         border: 2px solid var(--primary);
       }
+
+      .section-header {
+	margin-top: 2rem;
+	padding-bottom: 0.5rem;
+      }
+
+      .subsection-header {
+	margin-top: 1.5rem;
+ 	padding-bottom: 0.3rem;
+      }
+
+      .person-address {
+	font-size: 0.9rem;
+	color: #555;
+	margin-bottom: 0.5rem;
+      }
     }
   </style>
 </head>
@@ -386,8 +402,8 @@
 
   <script>
     // Complete list of politicians from your document
-    const politicians = [
-      // Senators
+    const politicians = {
+      senators: [
       {
         name: "Sen. Kirsten Gillibrand",
         state: "NY",
@@ -594,9 +610,10 @@
         phone: "(202) 224-4024",
         quote: "I strongly support ending the death penalty—a policy that has been applied in a manifestly racist way throughout our history.",
         source: "https://x.com/timkaine/status/1357756955486527490"
-      },
-      
-      // Representatives
+      }
+   ],
+      representatives: {
+	newYork: [
       {
         name: "Rep. Nydia Velázquez",
         state: "NY-07",
@@ -641,8 +658,31 @@
         quote: "We must abolish the death penalty.",
         source: "https://x.com/AOC/status/1838734396074942664?lang=en"
       }
-    ];
-
+    ],
+      pennsylvania: [
+{
+        name: "Rep. Mary Gay Scanlon",
+        state: "PA-05",
+        party: "D",
+        contact: "https://scanlon.house.gov/contact/",
+        phone: "(202) 225-2011",
+        address: "1214 Longworth House Office Building, Washington, DC 20515",
+        quote: "Signed a letter to President Biden...",
+        source: "https://scanlon.house.gov/news/documentsingle.aspx?DocumentID=1784"
+      },
+      {
+        name: "Rep. Summer Lee",
+        state: "PA-12",
+        party: "D",
+        contact: "https://summerlee.house.gov/contact-us",
+        phone: "(202) 225-2135",
+        address: "2437 Rayburn House Office Building, Washington, DC 20515",
+        quote: "Signed the Federal Death Penalty Prohibition Act of 2023...",
+        source: "https://www.judiciary.senate.gov/press/releases/durbin-pressley-reintroduce-bill-to-end-federal-death-penalty"
+      }
+    ]
+  }
+};
     // Updated organizations list with additional contacts from both sources
     const organizations = [
       {
@@ -900,6 +940,46 @@
         name: "European Union in the US",
         contact: "delegation-usa-info@eeas.europa.eu",
         description: "EU delegation to the United States"
+      },
+      {
+	name: "Brando Benifei (President of the Delegation for relations with the United States)",
+	contact: "brando.benifei@europarl.europa.eu",
+	description: "Group of the Progressive Alliance of Socialists and Democrats in the European Parliament"
+      },
+      {
+	name: "Stefano Bonaccini (Member of the Delegation for relations with the United States)",
+	contact: "stefano.bonaccini@europarl.europa.eu",
+	description: "Group of the Progressive Alliance of Socialists and Democrats in the European Parliament"
+      },
+      { 
+	name: "Ignazio Roberto Marino (Member of the Delegation for relations with the United States)",
+	contact: "ignazio.marino@europarl.europa.eu",
+	description: "Group of the Greens/European Free Alliance"
+      },
+      {
+	name: "Pina Picierno (Vice-President of European Parliament and Substitute Member of Civil Liberties, Justice and Home Affairs Committee)",
+	contact: "giuseppina.picierno@europarl.europa.eu",
+	description: "Group of the Progressive Alliance of Socialists and Democrats in the European Parliament"
+      },
+      {
+	name: "Cecilia Strada (Member of Civil Liberties, Justice and Home Affairs Committee)",
+	contact: "cecilia.strada@europarl.europa.eu",
+	description: "Group of the Progressive Alliance of Socialists and Democrats in the European Parliament"
+      },
+      {
+	name: "Alessandro Zan (Vice-Chair of Civil Liberties, Justice and Home Affairs Committee)",
+	contact: "alessandro.zan@europarl.europa.eu",
+	description: "Group of the Progressive Alliance of Socialists and Democrats in the European Parliament"
+      },
+      {
+	name: "Ilaria Salis (Member of Civil Liberties, Justice and Home Affairs Committee, Substitute Member of Foreign Affairs Committee and Substitute Member of Human Rights Subcommittee)",
+	contact: "ilaria.salis@europarl.europa.eu",
+	description: "The Left group in the European Parliament - GUE/NGL"
+      },
+      {
+	name: "Leoluca Orlando (Member of Foreign Affairs Committee and Substitute Member of Civil Liberties, Justice and Home Affairs Committee)",
+	contact: "leoluca.orlando@europarl.europa.eu",
+	description: "Group of the Greens/European Free Alliance"
       }
     ];
 
@@ -913,23 +993,47 @@
 
     function loadPoliticians() {
       const list = document.getElementById('politicians-list');
-      list.innerHTML = politicians.map(p => `
-        <div class="person-card">
-          <div class="person-name">${p.name}</div>
-          <div class="person-title">${p.state} • ${p.party}</div>
-          ${p.phone ? `<div class="person-contact">📞 ${p.phone}</div>` : ''}
-          <a href="${p.contact}" target="_blank">
-            <button>Send a message on your legislator's website</button>
-          </a>
-          ${p.quote ? `
-            <div class="quote">
-              ${p.quote} 
-              <a href="${p.source}" target="_blank" style="color: var(--secondary); font-weight: bold; display: block; margin-top: 0.5rem;">→ View source</a>
-            </div>
-          ` : ''}
-        </div>
-      `).join('');
-    }
+      list.innerHTML = `
+    	<div class="section-header">
+      	  <h3 style="color: var(--primary); margin-bottom: 1rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">U.S. Senators</h3>
+    	</div>
+    	${politicians.senators.map(p => createPersonCard(p)).join('')}
+    
+    	<div class="section-header">
+      	  <h3 style="color: var(--primary); margin: 2rem 0 1rem 0; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem;">U.S. Representatives</h3>
+    	</div>
+    
+    	<div class="subsection-header">
+      	  <h4 style="color: var(--secondary); margin: 1.5rem 0 0.5rem 0;">New York Representatives</h4>
+    	</div>
+    	${politicians.representatives.newYork.map(p => createPersonCard(p)).join('')}
+    
+    	<div class="subsection-header">
+      	  <h4 style="color: var(--secondary); margin: 1.5rem 0 0.5rem 0;">Pennsylvania Representatives</h4>
+    	</div>
+    	${politicians.representatives.pennsylvania.map(p => createPersonCard(p)).join('')}
+  `;
+}
+
+     function createPersonCard(p) {
+       return `
+    	<div class="person-card">
+      	   <div class="person-name">${p.name}</div>
+           <div class="person-title">${p.state} • ${p.party}</div>
+           ${p.address ? `<div class="person-address">${p.address}</div>` : ''}
+           ${p.phone ? `<div class="person-contact">📞 ${p.phone}</div>` : ''}
+           <a href="${p.contact}" target="_blank">
+            <button>Contact</button>
+           </a>
+      	   ${p.quote ? `
+             <div class="quote">
+               ${p.quote} 
+               <a href="${p.source}" target="_blank" style="color: var(--secondary); font-weight: bold; display: block; margin-top: 0.5rem;">→ View source</a>
+             </div>
+      ` : ''}
+    </div>
+  `;
+}
 
     function loadOrganizations() {
       const list = document.getElementById('organizations-list');
@@ -988,8 +1092,9 @@
       
       // Show selected tab
       document.getElementById(`${tabName}-tab`).classList.remove('hidden');
-      document.querySelector(`.tab[onclick="showTab('${tabName}')"]`).classList.add('active');
-    }
+      // Add 'active' in the clicked tab
+  document.querySelector(`.tab[onclick="showTab('${tabName}')"]`).classList.add('active');
+  }
 
     function findLegislators() {
       const zip = document.getElementById('zip-input').value.trim();
